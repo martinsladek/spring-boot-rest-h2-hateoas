@@ -1,0 +1,5 @@
+-- SQL create script
+-- Must be named and placed exactly as: resources/schema.sql
+-- You can copy-paste from H2 Hibernate test output and adjust for your needs
+-- To make this working, you have to enable in application.properties:
+-- spring.jpa.defer-datasource-initialization=true
