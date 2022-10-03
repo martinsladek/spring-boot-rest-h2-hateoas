@@ -8,6 +8,7 @@ import com.martinsladek.example.springeton.exceptions.ConflictStudentLessonExist
 import com.martinsladek.example.springeton.exceptions.StudentNotFoundException;
 import com.martinsladek.example.springeton.lesson.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +27,18 @@ public class StudentService {
     List<Student> findAll() {
         List<Student> allStudents = studentRepository.findAll();
         return allStudents;
+    }
+
+    Student save(Student student) {
+        return studentRepository.save(student);
+    }
+
+    void delete(Long studentId) {
+        try {
+            studentRepository.deleteById(studentId);
+        } catch (EmptyResultDataAccessException e) {
+            throw new StudentNotFoundException(studentId);
+        }
     }
 
     public void addLesson(Long studentId, Long lessonId) {

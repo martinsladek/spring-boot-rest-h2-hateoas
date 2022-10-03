@@ -11,10 +11,9 @@ import com.martinsladek.example.springeton.lesson.LessonController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/student")
@@ -23,6 +22,10 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping("/{id}")
+//    The same as:
+//    @RequestMapping(method = RequestMethod.GET
+//    CORS configuration:
+//    @CrossOrigin(origins = "http://localhost:8080")
     public EntityModel<Student> one(@PathVariable(value = "id") String id) {
         Student student = studentService.findById(Long.parseLong(id, 10));
 
@@ -42,6 +45,30 @@ public class StudentController {
 
         return CollectionModel.of(students,
                 linkTo(methodOn(StudentController.class).all()).withSelfRel());
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Student> create(@RequestBody Student newStudent) {
+        Student student = studentService.save(new Student(newStudent.getName(), newStudent.isActive(), newStudent.getCredits()));
+        return new ResponseEntity<>(student, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> update(@PathVariable("id") Long id, @RequestBody Student studentUpdated) {
+        Student student = studentService.findById(id);
+
+        student.setName(studentUpdated.getName());
+        student.setActive(studentUpdated.isActive());
+        student.setCredits(studentUpdated.getCredits());
+
+        return new ResponseEntity<Student>(studentService.save(student), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
+        studentService.delete(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{id}/lesson/all")
