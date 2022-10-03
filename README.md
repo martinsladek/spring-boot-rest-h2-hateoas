@@ -68,32 +68,32 @@ spring.jpa.show-sql=true
 
 Get all lessons:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/all"
 ```
 
 Get one lesson:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/1"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/2"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/3"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/3"
 ```
 
 ### Lesson subscriptions
 
 Lesson - list of subscribed students:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/1/student/all"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/lesson/2/student/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student/all"
 ```
 
 Subscribe student to lesson:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/2/student/1"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/2"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/3"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/4"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
-curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/2/student/1"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/2"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/3"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/4"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
 ```
 
 
@@ -101,27 +101,32 @@ curl -v -H "Connection: close" -H "Content-type: application/json" -X PUT "http:
 
 Get one student:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/student/1"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1"
 ```
 
 Get all students:
 ```
-curl -v -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/student/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/all"
 ```
 
 Create student:
 ```
-curl -v -i -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"Trinity","active":true,"credits":80}' "http://localhost:8080/student"
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"Trinity","active":true,"credits":80}' "http://localhost:8080/student"
 ```
 
 Update student:
 ```
-curl -i -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"id":1,"name":"Ada","active":false,"credits":5000}' "http://localhost:8080/student/1"
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"id":1,"name":"Ada","active":false,"credits":5000}' "http://localhost:8080/student/1"
+```
+
+Delete student:
+```
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/student/5"
 ```
 
 Student subscriptions:
 ```
-curl -s -H "Connection: close" -H "Content-type: application/json" -X GET "http://localhost:8080/student/1/lesson/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson/all"
 ```
 
 Curl params:
@@ -130,6 +135,6 @@ Curl params:
 -s suppress progress
 Don't needed:
 -v include input+output headers = too verbose
--X GET = default
--d implies -X POST
+-X GET = default; not needed
+-X POST implied by -d "data"; not needed
 ```
