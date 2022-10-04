@@ -19,16 +19,16 @@ public class StudentControllerHttpRequestTest {
 
     @Test
     public void subscribedStudentsShouldReturnSubscribedStudents() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/"
-                        + "lesson/1/student/all",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port
+                        + "/lesson/1/student/all",
                 String.class)).contains("Adele");
 
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/"
-                        + "lesson/1/student/all",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port
+                        + "/lesson/1/student/all",
                 String.class)).contains("{\"id\":1,");
 
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/"
-                        + "student/1/lesson/all",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port
+                        + "/student/1/lesson/all",
                 String.class)).contains("singing");
     }
 }
