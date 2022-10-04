@@ -6,7 +6,7 @@ import java.util.Set;
 import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonNotExists;
 import com.martinsladek.example.springeton.lesson.Lesson;
 import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonExists;
-import com.martinsladek.example.springeton.exceptions.StudentNotFoundException;
+import com.martinsladek.example.springeton.exceptions.entitynotfound.StudentNotFoundException;
 import com.martinsladek.example.springeton.lesson.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

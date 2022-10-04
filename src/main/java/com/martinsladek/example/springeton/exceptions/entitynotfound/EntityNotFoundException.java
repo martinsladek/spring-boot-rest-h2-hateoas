@@ -1,4 +1,4 @@
-package com.martinsladek.example.springeton.exceptions;
+package com.martinsladek.example.springeton.exceptions.entitynotfound;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException (String type, String id) {

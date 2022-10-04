@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.martinsladek.example.springeton.student.Student;
-import com.martinsladek.example.springeton.exceptions.LessonNotFoundException;
+import com.martinsladek.example.springeton.exceptions.entitynotfound.LessonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
