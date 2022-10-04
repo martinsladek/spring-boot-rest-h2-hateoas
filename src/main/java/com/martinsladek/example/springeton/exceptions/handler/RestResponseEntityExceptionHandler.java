@@ -1,6 +1,6 @@
 package com.martinsladek.example.springeton.exceptions.handler;
 
-import com.martinsladek.example.springeton.exceptions.ConflictException;
+import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictException;
 import com.martinsladek.example.springeton.exceptions.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

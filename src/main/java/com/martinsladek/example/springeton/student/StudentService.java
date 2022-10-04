@@ -3,9 +3,9 @@ package com.martinsladek.example.springeton.student;
 import java.util.List;
 import java.util.Set;
 
-import com.martinsladek.example.springeton.exceptions.ConflictStudentLessonNotExists;
+import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonNotExists;
 import com.martinsladek.example.springeton.lesson.Lesson;
-import com.martinsladek.example.springeton.exceptions.ConflictStudentLessonExists;
+import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonExists;
 import com.martinsladek.example.springeton.exceptions.StudentNotFoundException;
 import com.martinsladek.example.springeton.lesson.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;

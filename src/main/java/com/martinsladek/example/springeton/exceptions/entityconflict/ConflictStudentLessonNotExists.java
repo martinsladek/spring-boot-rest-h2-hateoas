@@ -1,4 +1,4 @@
-package com.martinsladek.example.springeton.exceptions;
+package com.martinsladek.example.springeton.exceptions.entityconflict;
 
 public class ConflictStudentLessonNotExists extends ConflictException {
     public ConflictStudentLessonNotExists(Long studentId, Long lessonId) {
