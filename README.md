@@ -94,15 +94,15 @@ curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "
 ```
 
 
-### Lesson subscriptions
+### Student-Lesson subscriptions
 
-Lesson - list of subscribed students:
+List Student to Lesson subscriptions by Lesson:
 ```
 curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student/all"
 curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student/all"
 ```
 
-Subscribe student to lesson:
+Subscribe Student to Lesson:
 ```
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/2/student/1"
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/2"
@@ -112,7 +112,7 @@ curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "ht
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
 ```
 
-Unsubscribe student from lesson:
+Unsubscribe Student from Lesson:
 ```
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X DELETE "http://localhost:8080/lesson/2/student/1"
 ```
@@ -145,7 +145,7 @@ Delete student:
 curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/student/5"
 ```
 
-Student subscriptions:
+List Student to Lesson subscriptions by Student:
 ```
 curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson/all"
 ```
