@@ -24,6 +24,9 @@ public class Student {
     // Generation Types: AUTO, IDENTITY, SEQUENCE and TABLE
     // https://www.baeldung.com/hibernate-identifiers#generated-identifiers
 //    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+/*
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
             name = "sequence-generator",
@@ -34,6 +37,8 @@ public class Student {
                     @Parameter(name = "increment_size", value = "1")
             }
     )
+*/
+
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
 //    @SequenceGenerator(name="student_generator", sequenceName = "student_seq", allocationSize=50)
     private Long id;
