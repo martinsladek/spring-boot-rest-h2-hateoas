@@ -18,7 +18,7 @@ public class Lesson {
     private Long id;
 
     // mappedBy points to property in opposite class, i.e. Student.lessons
-    @ManyToMany(mappedBy = "lessons")
+    @ManyToMany(mappedBy = "lessons", fetch = FetchType.LAZY)
     // Other annotations:
     // @JsonManagedReference (visible from this side)
     // @JsonBackReference (hidden from this side)
