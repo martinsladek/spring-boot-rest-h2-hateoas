@@ -78,6 +78,22 @@ curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://lo
 curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/3"
 ```
 
+Create lesson:
+```
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"directing"}' "http://localhost:8080/lesson"
+```
+
+Update lesson:
+```
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"name":"editoring"}' "http://localhost:8080/lesson/4"
+```
+
+Delete lesson:
+```
+curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/lesson/4"
+```
+
+
 ### Lesson subscriptions
 
 Lesson - list of subscribed students:
@@ -94,6 +110,11 @@ curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "ht
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/4"
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
 curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
+```
+
+Unsubscribe student from lesson:
+```
+curl -s -i -H "Connection: close" -H "Content-type: application/json" -X DELETE "http://localhost:8080/lesson/2/student/1"
 ```
 
 

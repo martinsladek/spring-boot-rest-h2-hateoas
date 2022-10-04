@@ -13,11 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lesson")
@@ -50,9 +48,39 @@ public class LessonController {
                 linkTo(methodOn(LessonController.class).all()).withSelfRel());
     }
 
+    @PostMapping("")
+    public ResponseEntity<Lesson> create(@RequestBody Lesson newLesson) {
+        Lesson lesson = lessonService.save(new Lesson(newLesson.getName()));
+        return new ResponseEntity<>(lesson, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Lesson> update(@PathVariable("id") Long id, @RequestBody Lesson lessonUpdated) {
+        Lesson lesson = lessonService.findById(id);
+
+        lesson.setName(lessonUpdated.getName());
+
+        return new ResponseEntity<Lesson>(lessonService.save(lesson), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
+        lessonService.delete(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @PutMapping("/{lessonId}/student/{studentId}")
     public void addStudent(@PathVariable(value = "lessonId") Long lessonId, @PathVariable(value = "studentId") Long studentId) {
         studentService.addLesson(studentId, lessonId);
+    }
+
+    @DeleteMapping("/{lessonId}/student/{studentId}")
+    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable(value = "lessonId") Long lessonId, @PathVariable(value = "studentId") Long studentId) {
+//        lessonService.deleteStudent(lessonId, studentId);
+        studentService.removeLesson(studentId, lessonId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{id}/student/all")

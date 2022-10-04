@@ -3,6 +3,7 @@ package com.martinsladek.example.springeton.student;
 import java.util.List;
 import java.util.Set;
 
+import com.martinsladek.example.springeton.exceptions.ConflictStudentLessonNotExists;
 import com.martinsladek.example.springeton.lesson.Lesson;
 import com.martinsladek.example.springeton.exceptions.ConflictStudentLessonExists;
 import com.martinsladek.example.springeton.exceptions.StudentNotFoundException;
@@ -25,19 +26,18 @@ public class StudentService {
     }
 
     List<Student> findAll() {
-        List<Student> allStudents = studentRepository.findAll();
-        return allStudents;
+        return  studentRepository.findAll();
     }
 
     Student save(Student student) {
         return studentRepository.save(student);
     }
 
-    void delete(Long studentId) {
+    void delete(Long id) {
         try {
-            studentRepository.deleteById(studentId);
+            studentRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new StudentNotFoundException(studentId);
+            throw new StudentNotFoundException(id);
         }
     }
 
@@ -53,9 +53,20 @@ public class StudentService {
         studentRepository.save(student);
     }
 
+    public void removeLesson(Long studentId, Long lessonId) {
+        Student student = findById(studentId);
+        Lesson lesson = lessonService.findById(lessonId);
+
+        if (! student.getLessons().contains(lesson)) {
+            throw new ConflictStudentLessonNotExists(studentId, lessonId);
+        }
+
+        student.getLessons().remove(lesson);
+        studentRepository.save(student);
+    }
+
     Set<Lesson> findLessons(Long studentId) {
         Student student = findById(studentId);
-        Set<Lesson> lessons = student.getLessons();
-        return lessons;
+        return student.getLessons();
     }
 }

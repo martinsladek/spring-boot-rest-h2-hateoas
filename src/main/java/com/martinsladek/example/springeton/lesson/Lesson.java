@@ -34,6 +34,10 @@ public class Lesson {
         this.id = id;
     }
 
+    public Lesson(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
