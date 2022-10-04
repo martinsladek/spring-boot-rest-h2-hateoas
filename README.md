@@ -53,13 +53,26 @@ resources/schema.sql
 resources/data.sql
 ```
 
-App config:
-```
+###App config:
 resources/application.properties
+```
+
 # Enable h2 console
 spring.h2.console.enabled=true
+
 # Show SQL queries:
 spring.jpa.show-sql=true
+
+# Hibernate-generated DB tables (one of following + do not defer):
+spring.jpa.defer-datasource-initialization=false
+spring.jpa.hibernate.ddl-auto=create
+
+# OR:
+spring.jpa.defer-datasource-initialization=false
+spring.jpa.hibernate.hbm2ddl.auto=create
+
+# use data.sql after Hibernate-based generation:
+spring.jpa.defer-datasource-initialization=true
 ```
 
 

@@ -3,6 +3,12 @@
 -- You can copy-paste from H2 Hibernate test output and adjust for your needs
 -- To make this working, you have to enable in application.properties:
 -- spring.jpa.defer-datasource-initialization=true
+--
+-- To skip Hibernate-based DDL generation, set in application.properties:
+-- spring.jpa.defer-datasource-initialization=false
+-- -- and one of the following:
+-- spring.jpa.hibernate.hbm2ddl.auto=none
+-- spring.jpa.hibernate.ddl-auto=none
 select 1 ;
 
 drop table if exists lesson CASCADE ;
