@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.martinsladek.example.springeton.student.Student;
 import com.martinsladek.example.springeton.exceptions.entitynotfound.LessonNotFoundException;
+import com.martinsladek.example.springeton.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class LessonService {
     @Autowired
     LessonRepository lessonRepository;
+
+    @Autowired
+    StudentService studentService;
 
     public Lesson findById(Long id) {
         return lessonRepository.findById(id)
