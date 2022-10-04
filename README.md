@@ -68,7 +68,7 @@ spring.jpa.show-sql=true
 
 Get all lessons:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson"
 ```
 
 Get one lesson:
@@ -98,8 +98,8 @@ curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "
 
 List Student to Lesson subscriptions by Lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student/all"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student"
 ```
 
 Subscribe Student to Lesson:
@@ -127,7 +127,7 @@ curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://lo
 
 Get all students:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student"
 ```
 
 Create student:
@@ -147,7 +147,7 @@ curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "
 
 List Student to Lesson subscriptions by Student:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson/all"
+curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson"
 ```
 
 Curl params:

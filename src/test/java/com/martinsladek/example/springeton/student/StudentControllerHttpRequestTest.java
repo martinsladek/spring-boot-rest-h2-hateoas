@@ -18,17 +18,17 @@ public class StudentControllerHttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void subscribedStudentsShouldReturnSubscribedStudents() throws Exception {
+    public void subscribedStudentsShouldReturnSubscribedStudents() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port
-                        + "/lesson/1/student/all",
+                        + "/lesson/1/student",
                 String.class)).contains("Adele");
 
         assertThat(this.restTemplate.getForObject("http://localhost:" + port
-                        + "/lesson/1/student/all",
+                        + "/lesson/1/student",
                 String.class)).contains("{\"id\":1,");
 
         assertThat(this.restTemplate.getForObject("http://localhost:" + port
-                        + "/student/1/lesson/all",
+                        + "/student/1/lesson",
                 String.class)).contains("singing");
     }
 }

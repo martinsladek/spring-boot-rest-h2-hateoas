@@ -36,7 +36,7 @@ public class StudentLessonController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{id}/student/all")
+    @GetMapping("/{id}/student")
     public CollectionModel<EntityModel<Student>> getStudentLesson(@PathVariable(value = "id") Long id) {
         List<EntityModel<Student>> students = lessonService.getStudents(id).stream()
                 .map(student -> EntityModel.of(student,

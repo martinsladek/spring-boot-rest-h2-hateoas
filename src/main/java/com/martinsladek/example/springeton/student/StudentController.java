@@ -61,7 +61,7 @@ public class StudentController {
         student.setActive(studentUpdated.isActive());
         student.setCredits(studentUpdated.getCredits());
 
-        return new ResponseEntity<Student>(studentService.save(student), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.save(student), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -71,7 +71,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{id}/lesson/all")
+    @GetMapping("/{id}/lesson")
     public CollectionModel<EntityModel<Lesson>> getLessons(@PathVariable(value = "id") String id) {
         List<EntityModel<Lesson>> lessons = studentService.findLessons(Long.parseLong(id, 10)).stream()
                 .map(lesson -> EntityModel.of(lesson,
