@@ -35,7 +35,7 @@ public class StudentController {
         );
     }
 
-    @GetMapping("all")
+    @GetMapping("")
     public CollectionModel<EntityModel<Student>> all() {
         List<EntityModel<Student>> students = studentService.findAll().stream()
                 .map(student -> EntityModel.of(student,

@@ -29,7 +29,7 @@ public class LessonController {
         );
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public CollectionModel<EntityModel<Lesson>> all() {
         List<EntityModel<Lesson>> lessons = lessonService.findAll().stream()
                 .map(lesson -> EntityModel.of(lesson,
@@ -53,7 +53,7 @@ public class LessonController {
 
         lesson.setName(lessonUpdated.getName());
 
-        return new ResponseEntity<Lesson>(lessonService.save(lesson), HttpStatus.OK);
+        return new ResponseEntity<>(lessonService.save(lesson), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
