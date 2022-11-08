@@ -81,29 +81,30 @@ spring.jpa.defer-datasource-initialization=true
 
 Get all lessons:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson" | json_pp
 ```
 
 Get one lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/3"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/3" | json_pp
 ```
 
 Create lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"directing"}' "http://localhost:8080/lesson"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"directing"}' "http://localhost:8080/lesson" | json_pp
 ```
 
 Update lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"name":"editoring"}' "http://localhost:8080/lesson/4"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"name":"editoring"}' "http://localhost:8080/lesson/4" | json_pp
 ```
 
 Delete lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/lesson/4"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/lesson/4" | json_pp
 ```
 
 
@@ -111,23 +112,23 @@ curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "
 
 List Student to Lesson subscriptions by Lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/1/student" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/lesson/2/student" | json_pp
 ```
 
 Subscribe Student to Lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/2/student/1"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/2"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/3"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/4"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5"
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/2/student/1" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/2" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/3" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/4" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5" | json_pp
+curl -s -H "Connection: close" -H "Content-type: application/json" -X PUT "http://localhost:8080/lesson/1/student/5" | json_pp
 ```
 
 Unsubscribe Student from Lesson:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" -X DELETE "http://localhost:8080/lesson/2/student/1"
+curl -s -H "Connection: close" -H "Content-type: application/json" -X DELETE "http://localhost:8080/lesson/2/student/1" | json_pp
 ```
 
 
@@ -135,32 +136,32 @@ curl -s -i -H "Connection: close" -H "Content-type: application/json" -X DELETE 
 
 Get one student:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1" | json_pp
 ```
 
 Get all students:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student" | json_pp
 ```
 
 Create student:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"Trinity","active":true,"credits":80}' "http://localhost:8080/student"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -d '{"name":"Trinity","active":true,"credits":80}' "http://localhost:8080/student" | json_pp
 ```
 
 Update student:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"id":1,"name":"Ada","active":false,"credits":5000}' "http://localhost:8080/student/1"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -X PUT -d '{"id":1,"name":"Ada","active":false,"credits":5000}' "http://localhost:8080/student/1" | json_pp
 ```
 
 Delete student:
 ```
-curl -s -i -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/student/5"
+curl -s -H "Connection: close" -H "Content-Type:application/json" -X DELETE "http://localhost:8080/student/5" | json_pp
 ```
 
 List Student to Lesson subscriptions by Student:
 ```
-curl -s -i -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson"
+curl -s -H "Connection: close" -H "Content-type: application/json" "http://localhost:8080/student/1/lesson" | json_pp
 ```
 
 Curl params:
@@ -171,4 +172,9 @@ Don't needed:
 -v include input+output headers = too verbose
 -X GET = default; not needed
 -X POST implied by -d "data"; not needed
+```
+
+Format JSON output:
+```
+curl -s ... | json_pp
 ```
