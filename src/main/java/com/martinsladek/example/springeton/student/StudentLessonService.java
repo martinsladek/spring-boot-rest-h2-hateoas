@@ -2,15 +2,14 @@ package com.martinsladek.example.springeton.student;
 
 import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonExists;
 import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictStudentLessonNotExists;
-import com.martinsladek.example.springeton.exceptions.entitynotfound.StudentNotFoundException;
 import com.martinsladek.example.springeton.lesson.Lesson;
 import com.martinsladek.example.springeton.lesson.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Isolation;
+//import org.springframework.transaction.annotation.Propagation;
+//import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class StudentLessonService {
@@ -20,6 +19,7 @@ public class StudentLessonService {
     @Autowired
     LessonService lessonService;
 
+//    @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
     public void addStudentLesson(Long studentId, Long lessonId) {
         Student student = studentService.findById(studentId);
         Lesson lesson = lessonService.findById(lessonId);
@@ -32,6 +32,8 @@ public class StudentLessonService {
         studentService.save(student);
     }
 
+//    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = -1, readOnly = true, rollbackFor = { RuntimeException.class })
+//    @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
     public void removeStudentLesson(Long studentId, Long lessonId) {
         Student student = studentService.findById(studentId);
         Lesson lesson = lessonService.findById(lessonId);
