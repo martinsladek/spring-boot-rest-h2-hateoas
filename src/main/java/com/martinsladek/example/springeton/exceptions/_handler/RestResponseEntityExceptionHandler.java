@@ -1,4 +1,4 @@
-package com.martinsladek.example.springeton.exceptions.handler;
+package com.martinsladek.example.springeton.exceptions._handler;
 
 import com.martinsladek.example.springeton.exceptions.entityconflict.ConflictException;
 import com.martinsladek.example.springeton.exceptions.entitynotfound.EntityNotFoundException;
