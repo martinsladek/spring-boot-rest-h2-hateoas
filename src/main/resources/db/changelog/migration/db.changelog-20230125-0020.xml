@@ -1,0 +1,51 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Martin" id="20230125-0020-1">
+        <createTable tableName="LESSON">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_8"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-2">
+        <createTable tableName="STUDENT">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_B"/>
+            </column>
+            <column name="ACTIVE" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREDITS" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-3">
+        <createTable tableName="STUDENT_LESSON">
+            <column name="STUDENT_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_D"/>
+            </column>
+            <column name="LESSON_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_D"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-4">
+        <createIndex indexName="FK2NMXS05VGK43XY1CKO182P72P_INDEX_D" tableName="STUDENT_LESSON">
+            <column name="STUDENT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-5">
+        <createIndex indexName="FKA64MWRI6GQ3AI7JWIH91GSMF7_INDEX_D" tableName="STUDENT_LESSON">
+            <column name="LESSON_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-6">
+        <addForeignKeyConstraint baseColumnNames="STUDENT_ID" baseTableName="STUDENT_LESSON" constraintName="FK2NMXS05VGK43XY1CKO182P72P" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="STUDENT" validate="true"/>
+    </changeSet>
+    <changeSet author="Martin" id="20230125-0020-7">
+        <addForeignKeyConstraint baseColumnNames="LESSON_ID" baseTableName="STUDENT_LESSON" constraintName="FKA64MWRI6GQ3AI7JWIH91GSMF7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LESSON" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

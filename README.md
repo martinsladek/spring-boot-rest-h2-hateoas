@@ -76,6 +76,86 @@ spring.jpa.defer-datasource-initialization=true
 ```
 
 
+## Liquibase interaction
+###Prepare Liquibase for schema generation:
+resources/application.properties
+```
+# Disable deferring (do not postpone) data source initialization after Hibernate-based schema init:
+spring.jpa.defer-datasource-initialization=false
+# We do not need to touch:
+#spring.sql.init.mode=never
+
+# Enable persistence to file (for embedded database)
+spring.datasource.url=jdbc:h2:C:/dev/spring/spring-boot-rest-h2-hateoas-db/h2data/h2;DB_CLOSE_ON_EXIT=FALSE
+
+# Turn on schema initialization also on standalone (not embedded) databases
+spring.sql.init.mode=always
+
+# Turn on Hibernate schema update on application start
+spring.jpa.hibernate.ddl-auto=update
+
+# If necessary you can disable Liquibase in Spring Boot
+#spring.liquibase.enabled=false
+```
+
+###Run app once to update schema in database:
+```
+java -jar target/springeton-1.0-SNAPSHOT.jar
+```
+Schema is updated.
+
+###Create first changelog:
+```
+mvn liquibase:generateChangeLog
+```
+New changelog is created in path (defined in Maven pom Liquibase plugin configuration)
+```
+src/main/resources/db/changelog/generated/db.changelog-${maven.build.timestamp}.xml
+```
+Verify the changelog, (create diff against previous changelog, if any), add incremental changelog to 
+```
+src/main/resources/db/changelog/migration/db.changelog-${maven.build.timestamp}.xml
+```
+
+###Create incremental (diff) changelog:
+Create database with previous/original state, save it to files h2-previous.mv.db, h2-previous.trace.db  
+In liquibase.properties define database with previous/original state:
+```
+referenceUrl=jdbc:h2:C:/dev/spring/spring-boot-rest-h2-hateoas-db/h2data/h2-previous;DB_CLOSE_ON_EXIT=FALSE
+referenceUsername=sa
+referencePassword=
+referenceDriver=org.h2.Driver
+```
+Run:
+```
+mvn liquibase:diff
+```
+New changelog is created in path (defined in Maven pom Liquibase plugin configuration)
+```
+src/main/resources/db/changelog/generated/db.changelog-${maven.build.timestamp}.xml
+```
+Verify the changelog, add incremental changelog to:
+```
+src/main/resources/db/changelog/migration/db.changelog-${maven.build.timestamp}.xml
+```
+
+###Apply changelog:
+New changelog will be applied when the application starts.  <br />
+To apply changelog manually run:
+```
+mvn liquibase:update
+```
+To generate SQL from changelog run:
+```
+mvn liquibase:updateSQL
+```
+Result will be saved into:
+```
+target/liquibase/migrate.sql
+```
+
+
+
 ## Client REST API
 ### Lesson
 
